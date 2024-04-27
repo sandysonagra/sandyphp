@@ -1,0 +1,1 @@
+console.log("ajax tutorial in one video");

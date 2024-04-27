@@ -1,0 +1,41 @@
+.topmenu{
+    padding: 30px 0px;
+    background-color: blue;
+}
+
+.topmenu .menubar{
+    padding-left: 50px;
+}
+
+.topmenu a{
+    color: white;
+    padding: 0 30px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topmenu a:hover{
+    color: aquamarine;    
+}
+
+h1{
+    text-align: center;
+    margin: 30px 0;
+}
+
+form{
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    padding: 30px;
+    background-color: aqua;
+}
+
+.show-err{
+    width: 50%;
+    margin: auto;
+}
+.input-err{
+    height: 10px;
+}

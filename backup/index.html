@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD using ajax</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+        <h1 class="alert-info text-center mb-5 p-3">
+            AJAX -- PHP -- Bootstaraps 5 -- jquery (CRUD)
+        </h1>
+        <div class="row">
+        <form  action="" class="col-sm-5" id="myform">
+            <h3 class="alert-warning text-center p-2">Add/Update Student</h3>
+    </div>
+    <div>
+      <label for="firstname" class="form-label">Firstname:</label>
+      <input type="text" class="form-control" id="firstname" />
+    </div>
+    <div>
+      <label for="lastname" class="form-label">Lastname:</label>
+      <input type="text" class="form-control" id="lastname" />
+    </div>
+    <div>
+      <label for="email" class="form-label">Email:</label>
+      <input type="text" class="form-control" id="email" />
+    </div>
+    Gender:
+    <input type="radio" id="male" name="gender" value="male">Male
+    <input type="radio" id="female" name="gender" value="female">Female
+    <input type="radio" id="other" name="gender" value="other">Other<br><br>
+
+Hobby:
+    <input type="checkbox" id="cricket" name="hobby" value="cricket">cricket
+    <input type="checkbox" id="hockey" name="hobby" value="hockey">hockey
+    <input type="checkbox" id="kho-kho" name="hobby" value="kho-kho">kho-kho
+    <input type="checkbox" id="volleball" name="hobby" value="volleball">volleball
+    <input type="checkbox" id="kabaddi" name="hobby" value="kabaddi">kabaddi
+    <input type="checkbox" id="football" name="hobby" value="football">football
+
+
+    <div class="mt-5">
+        <button type="submit" class="btn btn-primary" id="btnadd">SAVE</button>
+    </div><br><br>
+</form>
+
+<div class="col-sm-7 text-center">
+    <h3 class="alert-warning p-2">SHOW INFORMATION</h3>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">FIRSTNAME</th>
+            <th scope="col">LASTNAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">GENDER</th>
+            <th scope="col">HOBBY</th>
+        </tr>
+    </thead>
+        <tbody id="tbody"></tbody>
+</table>
+
+</div>
+</div>
+  </body>
+</html>
