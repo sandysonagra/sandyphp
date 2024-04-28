@@ -1,61 +1,58 @@
 <?php
-
 session_start();
 
 include ('connection.php');
 
-$id = $_POST['hidden'];
+$updateId = $_POST['updateId'];
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-$gender = isset($_POST['gender']) ? $_POST['gender'] : "";
-$photo = $_FILES['photo'];
-$error = [];
-$value = [];
+$gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+$image = $_FILES['image'];
+$errors = [];
+$values = [];
 
 if (empty($name)) {
-    $error['name'] = "*** please enter your name ***";
-    // print_r($error);
-    // exit();
+    $errors['name'] = 'First Name is required';
 }
 if (empty($email)) {
-    $error['email'] = "*** please enter your email ***";
+    $errors['email'] = 'Email is required';
 }
 if (empty($password)) {
-    $error['password'] = "*** please enter your password ***";
+    $errors['password'] = 'Password is required';
 }
 if (empty($gender)) {
-    $error['gender'] = "*** please select your gender ***";
-}
-if ($photo) {
-    $filename = $_FILES['photo']['name'];
-    $tempname = $_FILES['photo']['tmp_name'];
-    move_uploaded_file($tempname, 'images/' . $filename);
+    $errors['gender'] = 'Gender is required';
 }
 
-if (!empty($error)) {
-    $_SESSION['error'] = $error;
-    $_SESSION['value'] = $_POST;
-
-    header('location:form.php?updateid='. $id .'');
+if ($image) {
+    $filename = $_FILES['image']['name'];
+    $tmpname = $_FILES['image']['tmp_name'];
+    move_uploaded_file($tmpname, 'images/' . $filename);
+}
+    
+if (!empty($errors)) {
+    $_SESSION['errors'] = $errors;
+    // $_SESSION['values'] = $values;
+    $_SESSION['values'] = $_POST;
+    header('Location:mainForm.php?updateid='.$updateId.'');
 } else {
     if (isset($_POST['submit'])) {
-        $sql = "INSERT INTO `session_crud_by_sandip`(`name`, `email`, `password`, `gender`, `photo`) VALUES ('$name','$email','$password','$gender','$filename')";
 
+        $sql = "INSERT INTO `phpcrud`( `name`, `email`, `password`,`gender`,`image`) VALUES ('$name','$email','$password','$gender','$filename')";
         $result = mysqli_query($conn, $sql);
         session_destroy();
-        header('location:form.php');
-
-        // print_r($result);
+        header('Location:mainForm.php');
     }
-
-    if (isset($_POST['update'])) {
-        $sql = "UPDATE `session_crud_by_sandip` SET `name`='$name',`email`='$email',`password`='$password',`gender`='$gender',`photo`='$filename' WHERE `id`=$id";
-
+    if(isset($_POST['update'])){
+        $sql = "UPDATE `phpcrud` SET `name`='$name',`email`='$email',`password`='$password',`gender`='$gender',`image`='$filename' WHERE id=$updateId";
         $result = mysqli_query($conn, $sql);
-        header('location:form.php');
-    }
-}
 
+        header('Location:mainForm.php');
+
+
+    }
+
+}
 
 ?>

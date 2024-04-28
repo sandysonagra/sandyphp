@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-include ('connection.php');
+include ('con.php');
 
 if (isset($_GET['deleteid'])) {
     $id = $_GET['deleteid'];
 
-    $sql = "DELETE FROM `session_crud_by_sandip_third_time` WHERE `id`=$id";
+    $sql = "DELETE  FROM `session_crud_by_sandip_fourth_time` WHERE `id`=$id ";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header('location:index.php');
@@ -15,19 +15,18 @@ if (isset($_GET['deleteid'])) {
 }
 
 $id = $_POST['hidden'];
-$photo = $_FILES['photo']['name'];
 $name = $_POST['name'];
 $gender = $_POST['gender'];
-
-if ($photo == "") {
-    $error['photo'] = " *** please select your photo ***";
-}
+$photo = $_FILES['photo']['name'];
 
 if ($name == "") {
-    $error['name'] = " *** please enter your name *** ";
+    $error['name'] = "*** please enter your name ***";
 }
 if ($gender == "") {
-    $error['gender'] = " *** please select your gender *** ";
+    $error['gender'] = "*** please select your gender ***";
+}
+if ($photo == "") {
+    $error['photo'] = "*** please select your photo ***";
 }
 
 $filename = $_FILES['photo']['name'];
@@ -41,21 +40,23 @@ if (!empty($error)) {
     header('location:index.php?updateid=' . $id . '');
 } else {
     if (isset($_POST['submit'])) {
-        $sql = "INSERT INTO `session_crud_by_sandip_third_time`(`photo`, `name`, `gender`) VALUES ('$filename','$name','$gender')";
+        $sql = "INSERT INTO `session_crud_by_sandip_fourth_time`(`name`, `gender`, `photo`) VALUES ('$name','$gender','$filename')";
         $result = mysqli_query($conn, $sql);
         session_destroy();
         if ($result) {
             header('location:index.php');
         }
     }
-
     if (isset($_POST['update'])) {
-        $sql = "UPDATE `session_crud_by_sandip_third_time` SET `photo`='$filename',`name`='$name',`gender`='$gender' WHERE `id`=$id";
+        $sql = "UPDATE `session_crud_by_sandip_fourth_time` SET `name`='$name',`gender`='$gender',`photo`='$filename' WHERE `id`=$id";
+        // print_r($sql);
+        // exit;
         $result = mysqli_query($conn, $sql);
         if ($result) {
             header('location:index.php');
         }
     }
 }
+
 
 ?>

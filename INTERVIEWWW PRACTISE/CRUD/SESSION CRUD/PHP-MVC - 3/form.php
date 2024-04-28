@@ -1,31 +1,30 @@
 <?php
 
 session_start();
-include ('connection.php');
+include "connection.php";
 
+// $id = $_GET['editid'];
 if (isset($_GET['editid'])) {
     $id = $_GET['editid'];
-
-    $sql = "SELECT * FROM  `session_crud_by_sandip_third_time` WHERE `id`=$id ";
+    $sql = "SELECT * FROM  `session_crud_by_sandip_second_time` WHERE id=$id";
     $result = mysqli_query($conn, $sql);
 
     $row = mysqli_fetch_assoc($result);
+
     $_SESSION['value'] = $row;
-
-
 }
 
-?>
 
+?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>SESSION CRUD 3</title>
+    <title>SESSION CRUD SECOND TIME</title>
     <style>
         body {
-            padding: 20px;
+            padding: 30px;
         }
 
         .error {
@@ -40,60 +39,69 @@ if (isset($_GET['editid'])) {
 </head>
 
 <body>
+
     <div class="container">
         <center>
             <h2>FORM</h2>
         </center>
         <form action="validation.php" method="post" enctype="multipart/form-data">
+
+
             <div class="form-group">
-                <label for="photo">PHOTO :</label>
+                <label for="photo">PHOTO : </label>
                 <input type="file" name="photo" class="form-control">
                 <div class="error"><?php echo isset($_SESSION['error']['photo']) ? $_SESSION['error']['photo'] : '' ?>
                 </div>
             </div>
+
+
             <div class="form-group">
-                <label for="name">NAME :</label>
+                <label for="name">NAME : </label>
                 <input type="text" name="name" class="form-control"
                     value="<?php echo isset($_SESSION['value']['name']) ? $_SESSION['value']['name'] : '' ?>">
-                <div class="error"><?php echo isset($_SESSION['error']['name']) ? $_SESSION['error']['name'] : '' ?>
-                </div>
+                <div class="error"><?php if (isset($_SESSION['error']['name'])) {
+                    echo $_SESSION['error']['name'];
+                } ?></div>
             </div>
-            <div class="form-group form-control">
-                <label for="gender">GENDER :</label>
-                <input type="radio" name="gender" value="male" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'male' ? 'checked' : '' ?>> Male
-                <input type="radio" name="gender" value="female" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'female' ? 'checked' : '' ?>> Female
-                <input type="radio" name="gender" value="other" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'other' ? 'checked' : '' ?>> Other
+
+            <div class="form-group form-control ">
+                <label for="gender">GENDER : </label>
+                <input type="radio" name="gender" value="male" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'male' ? 'checked' : '' ?>>Male
+                <input type="radio" name="gender" value="female" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'female' ? 'checked' : '' ?>>Female
+                <input type="radio" name="gender" value="other" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'other' ? 'checked' : '' ?>>Other
                 <div class="error"><?php echo isset($_SESSION['error']['gender']) ? $_SESSION['error']['gender'] : '' ?>
                 </div>
             </div><br>
 
-            <?php
-
-            if (isset($_GET['editid']) || $_GET['updateid'] != "") {
-                echo '<input type="submit" name="update" value="UPDATE" class="btn btn-warning">';
-
-            } else {
-
-                echo '<input type="submit" name="submit" value="SUBMIT" class="btn btn-success">';
+            <?php 
+            if(isset($_GET['editid']) || $_GET['updateid'] != "")
+            {
+                echo'<input type="submit" name="update" value="UPDATE" class="btn btn-warning">';
+                
             }
+            else
+            {
+                echo'<input type="submit" name="submit" value="SUBMIT" class="btn btn-primary">';
 
-            ?>
+            }
+             ?>
 
-            <input type="hidden" name="hidden" value="<?php echo isset($_GET['editid']) ? $_GET['editid'] : '';
-            echo isset($_GET['updateid']) ? $_GET['updateid'] : '' ?>">
+            <input type="hidden" name="hidden" value="<?php echo isset($_GET['editid']) ? $_GET['editid'] :'' ;
+            
+            echo isset($_GET['updateid']) ? $_GET['updateid'] :''
+            ?>"  >
+
         </form>
     </div><br><br>
     <?php
-
     session_destroy();
-
     ?>
 
     <div class="container">
         <center>
             <h3>ALL DATA</h3>
         </center>
-        <table class="table table-striped table-dark">
+        <table class="table table-hover table-dark">
             <thead>
                 <tr>
                     <th>id</th>
@@ -105,30 +113,31 @@ if (isset($_GET['editid'])) {
             </thead>
             <tbody>
                 <?php
-
-                $sql = "SELECT * FROM `session_crud_by_sandip_third_time`";
+                $sql = "SELECT * FROM  `session_crud_by_sandip_second_time`";
                 $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
-                    <tr>
-                        <td><?= $row['id'] ?></td>
-                        <td><img src="images/<?= $row['photo'] ?>" height="100px" width="100px"></td>
-                        <td><?= $row['name'] ?></td>
-                        <td><?= $row['gender'] ?></td>
-                        <td>
-                            <button class="btn btn-primary"><a href="index.php?editid=<?= $row['id'] ?>"
-                                    class="text-light">EDIT</a></button>
-                            <button class="btn btn-danger"><a href="validation.php?deleteid=<?= $row['id'] ?>"
-                                    class="text-light">DELETE</a></button>
-                        </td>
 
-                    </tr>
-                    <?php
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>
+                    
+                    <td>" . $row['id'] . "</td>
+                    <td><img src='images/" . $row['photo'] . "' height='100px' width='100px' ></td>
+                    <td>" . $row['name'] . "</td>
+                    <td>" . $row['gender'] . "</td>
+                    <td>
+                    <button><a href='form.php?editid=$row[id]'>EDIT</a></button>
+                    <button><a href='delete.php?deleteid=$row[id]'>DELETE</a></button>
+
+                    </td>
+                    
+                    
+                    
+                    </tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

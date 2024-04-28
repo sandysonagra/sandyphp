@@ -4,30 +4,23 @@ session_start();
 include ('connection.php');
 
 if (isset($_GET['editid'])) {
+
     $id = $_GET['editid'];
 
-    $sql = "SELECT * FROM  `session_crud_by_sandip_third_time` WHERE `id`=$id ";
+    $sql = "SELECT * FROM  `session_crud_by_sandip_sixth_time` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
-
     $row = mysqli_fetch_assoc($result);
     $_SESSION['value'] = $row;
-
-
 }
 
 ?>
-
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>SESSION CRUD 3</title>
+    <title>REGISTER FORM</title>
     <style>
-        body {
-            padding: 20px;
-        }
-
         .error {
             color: red;
         }
@@ -42,15 +35,9 @@ if (isset($_GET['editid'])) {
 <body>
     <div class="container">
         <center>
-            <h2>FORM</h2>
+            <h2>REGISTER FORM</h2>
         </center>
         <form action="validation.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="photo">PHOTO :</label>
-                <input type="file" name="photo" class="form-control">
-                <div class="error"><?php echo isset($_SESSION['error']['photo']) ? $_SESSION['error']['photo'] : '' ?>
-                </div>
-            </div>
             <div class="form-group">
                 <label for="name">NAME :</label>
                 <input type="text" name="name" class="form-control"
@@ -60,21 +47,30 @@ if (isset($_GET['editid'])) {
             </div>
             <div class="form-group form-control">
                 <label for="gender">GENDER :</label>
-                <input type="radio" name="gender" value="male" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'male' ? 'checked' : '' ?>> Male
-                <input type="radio" name="gender" value="female" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'female' ? 'checked' : '' ?>> Female
+                <input type="radio" name="gender" value="male" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'male' ? 'checked' : '' ?>>Male
+                <input type="radio" name="gender" value="female" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'female' ? 'checked' : '' ?>>Female
                 <input type="radio" name="gender" value="other" <?php echo isset($_SESSION['value']['gender']) && $_SESSION['value']['gender'] == 'other' ? 'checked' : '' ?>> Other
                 <div class="error"><?php echo isset($_SESSION['error']['gender']) ? $_SESSION['error']['gender'] : '' ?>
                 </div>
             </div><br>
+            <div class="form-group">
+                <label for="photo">PHOTO :</label>
+                <input type="file" name="photo" class="form-control">
+                <div class="error"><?php echo isset($_SESSION['error']['photo']) ? $_SESSION['error']['photo'] : '' ?>
+                </div>
+            </div>
 
             <?php
 
+
             if (isset($_GET['editid']) || $_GET['updateid'] != "") {
-                echo '<input type="submit" name="update" value="UPDATE" class="btn btn-warning">';
+                echo '<input type="submit" name="update" value="UPDATE" class="form-control btn btn-warning">';
 
-            } else {
+            }
+            else
+            {
 
-                echo '<input type="submit" name="submit" value="SUBMIT" class="btn btn-success">';
+                echo '<input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-primary">';
             }
 
             ?>
@@ -84,47 +80,46 @@ if (isset($_GET['editid'])) {
         </form>
     </div><br><br>
     <?php
-
     session_destroy();
-
     ?>
 
     <div class="container">
         <center>
-            <h3>ALL DATA</h3>
+            <h3>REGISTERED DATA</h3>
         </center>
-        <table class="table table-striped table-dark">
+        <table class="table">
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>photo</th>
                     <th>name</th>
                     <th>gender</th>
+                    <th>photo</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
-                $sql = "SELECT * FROM `session_crud_by_sandip_third_time`";
+                $sql = "SELECT * FROM `session_crud_by_sandip_sixth_time`";
                 $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_assoc($result)) {
+
+                while ($row = mysqli_fetch_array($result)) {
                     ?>
                     <tr>
                         <td><?= $row['id'] ?></td>
-                        <td><img src="images/<?= $row['photo'] ?>" height="100px" width="100px"></td>
                         <td><?= $row['name'] ?></td>
                         <td><?= $row['gender'] ?></td>
+                        <td><img src="images/<?= $row['photo'] ?>" height="100px" width="100px"></td>
                         <td>
-                            <button class="btn btn-primary"><a href="index.php?editid=<?= $row['id'] ?>"
+                            <button class="btn btn-success"><a href="index.php?editid=<?= $row['id'] ?>"
                                     class="text-light">EDIT</a></button>
                             <button class="btn btn-danger"><a href="validation.php?deleteid=<?= $row['id'] ?>"
                                     class="text-light">DELETE</a></button>
                         </td>
-
                     </tr>
                     <?php
                 }
+
                 ?>
             </tbody>
         </table>
