@@ -26,7 +26,7 @@
                 <input type="password" name="password" class="form-control" required>
             </div>
             <input type="submit" name="login" value="LOGIN" class="form-control btn btn-primary">
-            <button class="form-control btn btn-warning" ><a href="register.php">REGISTER HERE</a></button>
+            <!-- <button class="form-control btn btn-warning"><a href="register.php">REGISTER HERE</a></button> -->
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -46,17 +46,15 @@
 <?php
 session_start();
 
-if(isset($_SESSION['email']))
-{
+if (isset($_SESSION['email'])) {
     header('location:table.php');
 }
-include('connection.php');
+include ('connection.php');
 
-if(isset($_POST['login']))
-{
+if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $_SESSION['email'] = $email;
-    $password  =$_POST['password'];
+    $password = $_POST['password'];
 
     $sql = "SELECT * FROM  `login_register_by_me` WHERE `email`='$email' AND `password`='$password'";
     $result = mysqli_query($conn, $sql);
@@ -64,8 +62,7 @@ if(isset($_POST['login']))
     // print_r($num_rows);
     // exit();
 
-    if($num_rows == 1)
-    {
+    if ($num_rows == 1) {
         header("Location:table.php");
     }
 

@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if (isset($_POST['update'])) {
-            $sql = "UPDATE `student_form` SET `name`='$name', `email`='$email', `address`='$address',`gender`='$gender' WHERE id=$id ";
+            $sql = "UPDATE `student_form` SET `name`='$name', `email`='$email', `address`='$address',`gender`='$gender',`photo`='$filename' WHERE id=$id ";
             $result = mysqli_query($conn, $sql);
             // print_r($sql);
             // exit();

@@ -40,7 +40,7 @@ include('connection.php');
             </thead>
             <tbody>
                 <?php
-
+                    include('connection.php');
                 $sql = "SELECT * FROM `login_register_by_me` WHERE `email`='$email' ";
                 $result = mysqli_query($conn, $sql);
                 // print_r($result);
