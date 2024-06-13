@@ -11,35 +11,9 @@
   
 
   <style>
-    .fnameError {
-      color: red;
-    }
-
-    .lastnameError {
-      color: red;
-    }
-
-    .emailError {
-      color: red;
-    }
-
-    .addressError {
-      color: red;
-    }
-
-    .genderError {
-      color: red;
-    }
-
-    .gameError {
-      color: red;
-    }
-    .image{
-      color: red;
-    }
-    .photo{
-      color: red;
-    }
+      .error{
+        color: red;
+      }
 
 
   </style>
@@ -71,7 +45,7 @@
                                               echo $_GET['name'];
                                             }
                                             ?>">
-      <div class="fnameError">
+      <div class="error">
         <?php
         if (isset($_GET['fname'])) {
           echo $_GET['fname'];
@@ -84,7 +58,7 @@
       last name: <input type="text" name="lname" value="<?php if (isset($_GET['lname'])) {
                                                           echo $_GET['lname'];
                                                         } ?>">
-      <div class="lastnameError">
+      <div class="error">
         <?php
         if (isset($_GET['lastname'])) {
           echo $_GET['lastname'];
@@ -97,7 +71,7 @@
       E-mail: <input type="text" name="email" value="<?php if (isset($_GET['emailre'])) {
                                                         echo $_GET['emailre'];
                                                       } ?>">
-      <div class="emailError">
+      <div class="error">
         <?php
         if (isset($_GET['email'])) {
           echo $_GET['email'];
@@ -110,7 +84,7 @@
       AREA : <textarea name="address" rows="1" cols="43"><?php if (isset($_GET['addressre'])) {
                                                             echo $_GET['addressre'];
                                                           } ?></textarea><br>
-      <div class="addressError">
+      <div class="error">
         <?php
         if (isset($_GET['address'])) {
           echo htmlspecialchars($_GET['address']);
@@ -149,7 +123,7 @@
                                                       } ?>>Other
 
 
-      <div class="genderError">
+      <div class="error">
         <?php
         if (isset($_GET['gender'])) {
           echo $_GET['gender'];
@@ -221,7 +195,7 @@
                                                               ?>>MINECRAFT
 
 
-      <div class="gameError">
+      <div class="error">
         <?php
         if (isset($_GET['game'])) {
           # code...

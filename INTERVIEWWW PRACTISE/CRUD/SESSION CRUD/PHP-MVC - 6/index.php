@@ -40,8 +40,7 @@ if (isset($_GET['editid'])) {
         <form action="validation.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">NAME :</label>
-                <input type="text" name="name" class="form-control"
-                    value="<?php echo isset($_SESSION['value']['name']) ? $_SESSION['value']['name'] : '' ?>">
+                <input type="text" name="name" class="form-control">
                 <div class="error"><?php echo isset($_SESSION['error']['name']) ? $_SESSION['error']['name'] : '' ?>
                 </div>
             </div>
@@ -66,9 +65,7 @@ if (isset($_GET['editid'])) {
             if (isset($_GET['editid']) || $_GET['updateid'] != "") {
                 echo '<input type="submit" name="update" value="UPDATE" class="form-control btn btn-warning">';
 
-            }
-            else
-            {
+            } else {
 
                 echo '<input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-primary">';
             }
