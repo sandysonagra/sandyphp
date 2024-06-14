@@ -13,9 +13,7 @@ if (isset($_GET['deleteid'])) {
         exit();
     }
 }
-if (isset($_GET['deleteid'])) {
-    $id = $_GET['deleteid'];
-}
+
 
 $id = $_POST['hidden'];
 $name = $_POST['name'];
@@ -65,9 +63,7 @@ if (!empty($error)) {
 
     header('location:index.php?updateid=' . $id . '');
 } else {
-    $language_str = implode(',', $language);
-
-
+    $language_str = implode(',' , $language);
     if (isset($_POST['submit'])) {
         $sql = "INSERT INTO `session_crud_by_sandip_seventh_time`(`name`, `contactno`, `gender`, `image`, `address`, `area`, `language`) VALUES ('$name','$contactno','$gender','$filename','$address','$area','$language_str')";
         $result = mysqli_query($conn, $sql);

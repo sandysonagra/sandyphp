@@ -105,8 +105,16 @@ if (isset($_GET['editid'])) {
                 </div>
             </div><br>
 
-            <input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-primary">
-            <input type="submit" name="update" value="UPDATE" class="form-control btn btn-info">
+            <?php
+            if ($_GET['editid'] || $_GET['updateid'] != "") {
+                echo '<input type="submit" name="update" value="UPDATE" class="form-control btn btn-info">';
+
+            } else {
+
+                echo '<input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-primary">';
+            }
+            ?>
+           
             <input type="hidden" name="hidden" value="<?php echo isset($_GET['editid']) ? $_GET['editid'] : '';
             echo isset($_GET['updateid']) ? $_GET['updateid'] : '';
             ?>">
@@ -145,7 +153,7 @@ if (isset($_GET['editid'])) {
                         <td><?= $row['name'] ?></td>
                         <td><?= $row['contactno'] ?></td>
                         <td><?= $row['gender'] ?></td>
-                        <td><img src="images/<?= $row['photo'] ?>" alt="<?= $row['photo'] ?>" height="100px" width="100px"></td>
+                        <td><img src="images/<?= $row['photo'] ?>" height="100px" width="100px"></td>
                         <td><?= $row['address'] ?></td>
                         <td><?= $row['area'] ?></td>
                         <td>
