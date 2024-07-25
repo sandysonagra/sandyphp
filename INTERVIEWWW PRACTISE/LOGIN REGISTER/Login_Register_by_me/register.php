@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_SESSION['email'])) {
+    header('location:table.php');
+}
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -29,7 +37,7 @@
                 <input type="password" name="password" class="form-control" required>
             </div>
             <input type="submit" name="submit" class="form-control btn btn-primary">
-            <button class="form-control btn btn-warning" ><a href="login.php">LOGIN HERE</a></button>
+            <button class="form-control btn btn-warning"><a href="login.php">LOGIN HERE</a></button>
 
         </form>
     </div>

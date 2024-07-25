@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('connection.php');
 
 $email = $_SESSION['email'];
 
@@ -8,7 +9,6 @@ if(!isset($_SESSION['email']))
     header('location:login.php');
 }
 
-include('connection.php');
 
 ?>
 

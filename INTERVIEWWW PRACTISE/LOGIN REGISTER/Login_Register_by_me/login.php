@@ -26,7 +26,7 @@
                 <input type="password" name="password" class="form-control" required>
             </div>
             <input type="submit" name="login" value="LOGIN" class="form-control btn btn-primary">
-            <!-- <button class="form-control btn btn-warning"><a href="register.php">REGISTER HERE</a></button> -->
+            <button class="form-control btn btn-warning"><a href="register.php">REGISTER HERE</a></button>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
