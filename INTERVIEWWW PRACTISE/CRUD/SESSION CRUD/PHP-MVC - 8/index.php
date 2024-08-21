@@ -4,7 +4,7 @@ include ('conn.php');
 
 if (isset($_GET['editid'])) {
     $id = $_GET['editid'];
-    $sql = "SELECT * FROM `session_crud_by_sandip_eight_time` WHERE `id`='$id'";
+    $sql = "SELECT * FROM `session_crud_by_sandip_bm_coder` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $_SESSION['value']['name'] = $row['name'];
@@ -136,7 +136,7 @@ if (isset($_GET['editid'])) {
             </thead>
             <tbody>
                 <?php
-                $sql = "SELECT * FROM `session_crud_by_sandip_eight_time`";
+                $sql = "SELECT * FROM `session_crud_by_sandip_bm_coder`";
                 $result = mysqli_query($conn, $sql);
 
                 while ($row = mysqli_fetch_assoc($result)) {

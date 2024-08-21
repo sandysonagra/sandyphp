@@ -1,12 +1,12 @@
 <?php
 
 session_start();
-include ('conn.php');
+include('conn.php');
 
 if (isset($_GET['deleteid'])) {
     $id = $_GET['deleteid'];
 
-    $sql = "DELETE FROM `session_crud_by_sandip_eight_time` WHERE `id`='$id' ";
+    $sql = "DELETE FROM `session_crud_by_sandip_bm_coder` WHERE `id`='$id' ";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header('location:index.php');
@@ -59,7 +59,7 @@ if (!empty($error)) {
 } else {
     $language_str = implode(',', $language);
     if (isset($_POST['submit'])) {
-        $sql = "INSERT INTO `session_crud_by_sandip_eight_time`(`name`, `contactno`, `gender`, `photo`, `address`, `area`, `language`) VALUES ('$name','$contactno','$gender','$filename','$address','$area','$language_str')";
+        $sql = "INSERT INTO `session_crud_by_sandip_bm_coder`(`name`, `contactno`, `gender`, `photo`, `address`, `area`, `language`) VALUES ('$name','$contactno','$gender','$filename','$address','$area','$language_str')";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -67,11 +67,10 @@ if (!empty($error)) {
         }
     }
     if (isset($_POST['update'])) {
-        $sql = "UPDATE `session_crud_by_sandip_eight_time` SET `name`='$name',`contactno`='$contactno',`gender`='$gender',
+        $sql = "UPDATE `session_crud_by_sandip_bm_coder` SET `name`='$name',`contactno`='$contactno',`gender`='$gender',
         `photo`='$filename',`address`='$address',`area`='$area',`language`='$language_str' WHERE `id`='$id'";
         $result = mysqli_query($conn, $sql);
-        if($result)
-        {
+        if ($result) {
             header('location:index.php');
         }
     }
